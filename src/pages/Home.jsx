@@ -38,6 +38,7 @@ camera={{near: 0.1 , far : 1000}}
 <Plane />
 <Bird />
 <Sky />
+
 <Island 
 position = {islandPosition}
 scale = {islandScale}
