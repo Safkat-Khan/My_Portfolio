@@ -2,7 +2,7 @@ import { Suspense, useState} from 'react'
 import { Canvas } from '@react-three/fiber'
 import Loader from '../components/Loader'
 
-import  Island  from '../models/Island';
+import  Island  from '../models/island';
 import  Sky  from '../models/Sky';
 import Bird from '../models/Bird';
 import Plane from '../models/Plane';
