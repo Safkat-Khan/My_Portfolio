@@ -1,10 +1,15 @@
-import React, { useRef, useState } from 'react'
+import React, { Suspense, useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'; 
+import { Canvas } from '@react-three/fiber';
+
+import Fox from '../models/Fox';
+import Loader  from '../components/Loader';
 
 const Contract = () => {
 const formRef = useRef(null);
 const[form,setForm]  = useState({name:'',email:'',message:''})
 const [isLoading,setIsLoading] = useState(false);
+const [currentAnimation,setCurrentAnimation] = useState('idel')
 
 const handleChange =(e) => {
   setForm({...form,[e.target.name]: e.target.value})
@@ -39,8 +44,11 @@ const handleSubmit  = (e) => {
   })
 
 };
-const handleBlur = () => {};
+
 const handleFocus = () => {};
+
+const handleBlur = () => {};
+
 
   return (
     <section className="relative flex lg:flex-row flex-col max-container">
@@ -99,6 +107,27 @@ const handleFocus = () => {};
         </button>
         </form>
       
+      </div>
+
+      <div className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]">
+      <Canvas
+      camera={{
+      position:[0, 0, 5],
+      fov:75,
+      near: 0.1,
+      far: 1000
+      }}
+      >
+        <directionalLight intensity={2.5} position={[0, 0, 1]}/>
+        <ambientLight intensity={0.5}/>
+        <Suspense fallback={<Loader/>}>
+          <fox
+          position = {[0.5, 0.35, 0]}
+          rotation = {[12.6, -0.6, 0]}
+          scale = {[0.5, 0.5, 0.5]}
+          />
+        </Suspense>
+      </Canvas>
       </div>
     </section>
   )
