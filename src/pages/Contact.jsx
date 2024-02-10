@@ -2,23 +2,26 @@ import React, { Suspense, useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'; 
 import { Canvas } from '@react-three/fiber';
 
-import Fox from '../models/Fox';
 import Loader  from '../components/Loader';
+
+import Fox from '../models/Fox';
+
 
 const Contract = () => {
 const formRef = useRef(null);
-const[form,setForm]  = useState({name:'',email:'',message:''})
+const [form,setForm]  = useState({name:'',email:'',message:''})
 const [isLoading,setIsLoading] = useState(false);
-const [currentAnimation,setCurrentAnimation] = useState('idel')
+//const [currentAnimation,setCurrentAnimation] = useState('idle')
 
 const handleChange =(e) => {
   setForm({...form,[e.target.name]: e.target.value})
 };
 
-const handleSubmit  = (e) => {
+const handleSubmit  = (e) => { 
   e.preventDefault();
   setIsLoading(true);
 
+  console.log(import.meta.env.VITE_APP_EMAILJS_SERVICE_ID)
   emailjs.send(
     import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
     import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
@@ -30,32 +33,29 @@ const handleSubmit  = (e) => {
       message:form.message
     },
     import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-    
   ).then(() => {
     setIsLoading(false);
     //TODO
     //TODO
     setForm({name: '',email: '',message:''});
-
-  }).catch((error) =>{
+  }).catch((error) => {
     setIsLoading(false);
     console.log(error);
     //TODO
   })
+}
 
-};
+const handleFocus = () => setCurrentAnimation('walk');
 
-const handleFocus = () => {};
-
-const handleBlur = () => {};
-
+const handleBlur = () => setCurrentAnimation('idle');
 
   return (
     <section className="relative flex lg:flex-row flex-col max-container">
       <div className="flex-1 min-w-[50%] flex flex-col">
         <h1 className="head-text">Get In Touch</h1>
 
-        <form className="w-full flex flex-col gap-7 mt-14"onSubmit={handleSubmit}>
+        <form 
+        className="w-full flex flex-col gap-7 mt-14" onSubmit={handleSubmit}>
 
           <label className="text-black-500 font-semibold">Name
           <input 
@@ -103,13 +103,13 @@ const handleBlur = () => {};
         onFocus={handleFocus}
         onBlur={handleBlur}
         >
-          {isLoading?'sending...':'Send Message'}
+          {isLoading?'Sending...' : 'Send Message'}
         </button>
-        </form>
-      
+        </form>      
       </div>
 
-      <div className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]">
+      <div className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]
+      ">
       <Canvas
       camera={{
       position:[0, 0, 5],
@@ -121,7 +121,7 @@ const handleBlur = () => {};
         <directionalLight intensity={2.5} position={[0, 0, 1]}/>
         <ambientLight intensity={0.5}/>
         <Suspense fallback={<Loader/>}>
-          <fox
+          <Fox
           position = {[0.5, 0.35, 0]}
           rotation = {[12.6, -0.6, 0]}
           scale = {[0.5, 0.5, 0.5]}
@@ -133,4 +133,4 @@ const handleBlur = () => {};
   )
 }
 
-export default Contract
+export default Contract;
