@@ -59,7 +59,7 @@ const handleFocus = () => setCurrentAnimation('walk');
 const handleBlur = () => setCurrentAnimation('idle');
 
   return (
-    <section className="relative flex lg:flex-row flex-col max-container">
+    <section className="relative flex lg:flex-row flex-col max-container h-[100vh]">
       {alert.show && <Alert {...alert} />}
 
       <div className="flex-1 min-w-[50%] flex flex-col">
