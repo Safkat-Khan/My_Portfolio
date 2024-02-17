@@ -2,7 +2,7 @@
 
 Welcome to my portfolio! This is a showcase of my projects, skills, and experience in the field of 3D web development.
 
-![Local Image](assets/cover.png)
+![Local Image](src/assets/cover.png)
 
 
 
