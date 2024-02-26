@@ -79,5 +79,5 @@ Here are some of the projects I have worked on:
   Description of coursework and achievements.
 
 ## Contact
-Feel free to reach out to me via email at [email@example.com](mailto:email@example.com) or connect with me on [LinkedIn](https://www.linkedin.com/in/your-profile).
+Feel free to reach out to me via email at [email@example.com](mailto:email@example.com) or connect with me on [LinkedIn](https://www.linkedin.com/in/safkat-khan-20a2aa244/)
 
