@@ -24,9 +24,9 @@ Welcome to my portfolio! This is a showcase of my projects, skills, and experien
 
 ## Skills
 
-- Skill 1
-- Skill 2
-- Skill 3
+- JavaScript
+- Java
+- C++
 
 ## Experience
 
